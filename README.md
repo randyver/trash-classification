@@ -43,20 +43,17 @@ cd trash-classification
 pip install -r requirements.txt
 ```
 
-3. Login Huggingface and input your token
+3. Login Huggingface and input your token:
 ```bash
 huggingface-cli login
 ```
 
-4. Login WandB and input your API key
-```bash
-wandb.login()
-```
-
-5. Execute the Jupyter notebook:
+4. Execute the Jupyter notebook:
 ```bash
 jupyter notebook notebook/trash_classification.ipynb
 ```
+
+5. When the program prompts for a wandb login, you will be required to input your wandb API key.
 
 ## 🗃️ Dataset
 
@@ -80,3 +77,13 @@ The model used in this project is a Convolutional Neural Network (CNN) designed 
    
 5. Output Layer:
    The output layer consists of 6 neurons corresponding to the 6 classes in the TrashNet dataset.
+
+## 🤗 Huggingface Repository
+This repository contains the trained model:
+
+https://huggingface.co/randyver/trash-classification-cnn
+
+## 📈 WandB Model Tracking
+This page contains experimental logs and graphs, including training and validation accuracy, as well as training and validation loss:
+
+https://wandb.ai/randyverdian99-bandung-institute-of-technology/trash-classification-cnn

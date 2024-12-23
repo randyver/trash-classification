@@ -34,7 +34,7 @@ To run the model locally, you can follow these steps:
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/your-username/trash-classification.git
+git clone https://github.com/randyver/trash-classification.git
 cd trash-classification
 ```
 

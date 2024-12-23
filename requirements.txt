@@ -1,6 +1,7 @@
 datasets
 torch
 torchvision
+torchsummary
 matplotlib
 scikit-learn
 seaborn

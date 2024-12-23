@@ -1,0 +1,8 @@
+datasets
+torch
+torchvision
+matplotlib
+scikit-learn
+seaborn
+tqdm
+wandb

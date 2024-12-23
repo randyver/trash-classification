@@ -24,24 +24,16 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Login to Hugging Face
-      run: |
-        echo "HUGGINGFACE_TOKEN=${{ secrets.HUGGINGFACE_TOKEN }}" >> $GITHUB_ENV
-
     - name: Login to WandB
       run: |
         echo "WANDB_API_KEY=${{ secrets.WANDB_API_KEY }}" >> $GITHUB_ENV
 
     - name: Run Jupyter Notebook for model training
       run: |
-        jupyter nbconvert --to notebook --execute --inplace model_training_notebook.ipynb
-
-    - name: Upload trained model to Hugging Face Hub
-      run: |
-        python upload_model_to_huggingface.py
+        jupyter nbconvert --to notebook --execute --inplace notebook/trash_classification.ipynb
 
     - name: Upload executed notebook as artifact
       uses: actions/upload-artifact@v3
       with:
         name: executed-notebook
-        path: model_training_notebook.ipynb
+        path: notebook/trash_classification.ipynb

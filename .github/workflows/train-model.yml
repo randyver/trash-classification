@@ -1,0 +1,47 @@
+name: Modelling and Training Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  train-model:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.8
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Login to Hugging Face
+      run: |
+        echo "HUGGINGFACE_TOKEN=${{ secrets.HUGGINGFACE_TOKEN }}" >> $GITHUB_ENV
+
+    - name: Login to WandB
+      run: |
+        echo "WANDB_API_KEY=${{ secrets.WANDB_API_KEY }}" >> $GITHUB_ENV
+
+    - name: Run Jupyter Notebook for model training
+      run: |
+        jupyter nbconvert --to notebook --execute --inplace model_training_notebook.ipynb
+
+    - name: Upload trained model to Hugging Face Hub
+      run: |
+        python upload_model_to_huggingface.py
+
+    - name: Upload executed notebook as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: executed-notebook
+        path: model_training_notebook.ipynb
